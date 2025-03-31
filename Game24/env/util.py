@@ -5,8 +5,11 @@ import sympy
 
 def check_answer(problem: str, answer: str):
     expression = answer.strip().split('\n')[-1].lower().replace('answer: ', '').split('=')[0]
+    print("expression: ", expression)
     numbers = re.findall(r'\d+', expression)
+    print("numbers: ", numbers)
     problem_numbers = re.findall(r'\d+', problem)
+    print("problem numbers: ",problem_numbers)
     if sorted(numbers) != sorted(problem_numbers):
         return False, "The numbers you use are not the original numbers from the problem."
     try:

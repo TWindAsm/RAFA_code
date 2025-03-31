@@ -36,6 +36,7 @@ class Game24(Environment):
         return {"action": "", "feedback": []}
 
     def check_step(self, idx, last_step, cur_step):
+        print("cur_step: ", cur_step)
         try:
             if "answer" in cur_step.lower():
                 correct, feedback = check_answer(self.puzzle, cur_step)
@@ -99,6 +100,7 @@ class Game24(Environment):
         self.cur_step += 1
         prev_len = len(self.history)
         feedback, reward = self.generate_feedback(action)
+        print("feedback in env.step: ", feedback)
         new_len = len(self.history)
         delta = new_len - prev_len + 1 if new_len < 4 else new_len - prev_len
         assert delta > 0
@@ -111,6 +113,7 @@ class Game24(Environment):
         else:
             info = {'action': action, 'history': []}
             obs = {'answer': answer, 'feedback': []}
+        print("obs: ", obs)
         return obs, reward, done, info
 
     @staticmethod
@@ -124,7 +127,10 @@ class Game24(Environment):
     @staticmethod
     def propose_prompt_wrap(x: str, y: str = '') -> str:
         current_numbers = get_current_numbers(y if y else x)
+        print("current_numbers: ", current_numbers)
         if current_numbers == '24':
+            print("got in here, because one was 24")
+            print("x: ", x)
             prompt = cot_prompt.format(input=x) + 'Steps:\n' + y
             # print([prompt])
         else:

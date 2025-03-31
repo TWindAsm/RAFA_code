@@ -27,14 +27,20 @@ def run(args):
         obs = env.reset(i)
         log = {'idx': i, 'agent_info': [], 'env_info': []}
         done = False
+        j = 0
         while not done:
+            j +=1
+            print("Iteration: ", j)
             action, agent_info = agent.act(env, obs)
+            print("List of actions after agent.act: ", action)
+            print("Agent info after agent.act: ", agent_info)
             obs, reward, done, env_info = env.step(action)
+            print("env info after env.step: ", env_info)
             agent.update(obs, reward, done, env_info)
             log['agent_info'].append(agent_info)
             log['env_info'].append(env_info)
-            print(obs)
-            print(reward, done, env_info)
+            #print(obs)
+            #print(reward, done, env_info)
             log['usage_so_far'] = gpt_usage(args.backend)
             tmp_logs = logs + [log]
             with open(file, 'w') as f:
@@ -47,7 +53,7 @@ def run(args):
 def parse_args():
     args = argparse.ArgumentParser()
     args.add_argument('--backend', type=str,
-                      choices=['gpt-4', 'gpt-3.5-turbo', 'gpt-3.5-turbo-16k', 'gpt-4-0613', 'text-davinci-003', 'text-davinci-002'],
+                      choices=['gpt-4', 'gpt-3.5-turbo', 'gpt-3.5-turbo-16k', 'gpt-4-0613', 'text-davinci-003', 'text-davinci-002', "llama-3.3-70b-versatile"],
                       default='gpt-3.5-turbo')
     args.add_argument('--temperature', type=float, default=0.7)
 

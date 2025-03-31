@@ -14,7 +14,7 @@ Input: {input}
 '''
 
 # 5-shot
-cot_prompt = '''Now just remember the tips from before (if any) and focus on the new task. Use numbers and basic arithmetic operations (+ - * /) to obtain 24. Each step, you are only allowed to choose two of the remaining numbers to obtain a new number.
+cot_prompt = '''Now just remember the tips from before (if any) and focus on the new task. Use numbers and basic arithmetic operations (+ - * /) to obtain 24. Each step, you are only allowed to choose two of the remaining numbers to obtain a new number. Only single newline and never double newline.
 Input: 4 4 6 8
 Steps:
 4 + 8 = 12 (left: 4 6 12)
@@ -49,7 +49,7 @@ Input: {input}
 '''
 
 # 1-shot
-propose_prompt = '''Now use numbers and basic arithmetic operations (+ - * /) to generate possible next steps. Make sure use steps that is sure to leads to 24 and avoid steps that are impossible to generate 24. Note that it is possible that we are considering intermediate steps so the numbers of the input may be less than 4.
+propose_prompt = '''Now use numbers and basic arithmetic operations (+ - * /) to generate possible next steps. Make sure use steps that is sure to leads to 24 and avoid steps that are impossible to generate 24. Note that it is possible that we are considering intermediate steps so the numbers of the input may be less than 4. Only make one newline before suggestions
 Example:
 Input: 2 8 8 14 
 Possible next steps: 
