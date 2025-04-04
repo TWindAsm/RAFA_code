@@ -39,22 +39,29 @@ class Game24(Environment):
         print("cur_step: ", cur_step)
         try:
             if "answer" in cur_step.lower():
+                print("Current step contains answer thus Checking answer")
                 correct, feedback = check_answer(self.puzzle, cur_step)
+                print("Answer is correct: ", correct, " Why: ", feedback)
                 if not correct:
                     return f"Step {idx} tries to give an answer but it is incorrect. {feedback}", 0
                 return f"Step {idx} is correct. {feedback}", 10
             else:
                 # Check if the step is valid
+                print("Current step does not contain answer, Checking valid move")
                 correct, feedback = check_valid_move(idx, last_step, cur_step)
+                print("Current step is valid: ", correct, " Why: ", feedback)
                 if not correct:
                     return f"Step {idx} is illegal. {feedback}", 0
 
                 formula = cur_step.split('left:')[0].strip("()")
+                print("Checking equation, formula:", formula)
                 correct, feedback = check_equation(formula)
+                print("Equation is correct: ", correct, " Why: ", feedback)
                 if not correct:
                     return f"Step {idx} is not correctly calculated. {feedback}", 0
-
+                print("Checking if it is possible to reach 24")
                 correct, feedback = check_twentyfour(cur_step)
+                print("It is possible: ", correct, " Why: ", feedback)
                 if not correct:
                     return f"Step {idx} is impossible to lead to 24. {feedback}", 0
 
@@ -65,6 +72,7 @@ class Game24(Environment):
             return f"Step {idx} is invalid.", 0
 
     def generate_feedback(self, action):
+        print("We are now in generate_feedback\n")
         feedbacks = ["Evaluation:"]   # feedbacks for each step
         rewards = 0
         if isinstance(action, list):
@@ -94,6 +102,8 @@ class Game24(Environment):
         # if 'answer' not in steps[-1].lower():
         #     feedbacks.append("The answer is not complete.")
         total_feedback = " ".join(feedbacks) if self.feedback else None
+
+        print("We are now done with generate feedback")
         return total_feedback, rewards
 
     def step(self, action):
@@ -127,11 +137,11 @@ class Game24(Environment):
     @staticmethod
     def propose_prompt_wrap(x: str, y: str = '') -> str:
         current_numbers = get_current_numbers(y if y else x)
-        print("current_numbers: ", current_numbers)
+        #print("current_numbers: ", current_numbers)
         if current_numbers == '24':
-            print("got in here, because one was 24")
-            print("x: ", x)
-            prompt = cot_prompt.format(input=x) + 'Steps:\n' + y
+            #print("got in here, because one was 24")
+            #print("x: ", x)
+            prompt = cot_prompt.format(input=x) + 'Steps:\n' + y + "Answer: "
             # print([prompt])
         else:
             prompt = propose_prompt.format(input=current_numbers)
@@ -153,6 +163,7 @@ class Game24(Environment):
         last_line = y.strip().split('\n')[-1]
         if 'left: ' not in last_line:  # last step
             ans = last_line.lower().replace('answer: ', '')
+            #print("gets here!!!")
             # print([value_last_step_prompt.format(input=x, answer=ans)])
             return value_last_step_prompt.format(input=x, answer=ans)
         current_numbers = get_current_numbers(y)
@@ -173,9 +184,39 @@ class Game24(Environment):
 
     @staticmethod
     def value_outputs_unwrap(x: str, y: str, value_outputs: list) -> float:
-        if len(y.strip().split('\n')) == 4 and 'answer' not in y.lower():
-            return 0
-        value_names = [_.split('\n')[-1].lower() for _ in value_outputs]
-        value_map = {'impossible': 0.001, 'likely': 1, 'sure': 20}  # TODO: ad hoc
-        value = sum(value * sum(name in value_name for value_name in value_names) for name, value in value_map.items())
-        return value
+        #if len(y.strip().split('\n')) == 4 and 'answer' not in y.lower():
+        #   return 0
+        #value_names = [_.split('\n')[-1].lower() for _ in value_outputs]
+        #value_map = {'impossible': 0.001, 'likely': 1, 'sure': 20}  # TODO: ad hoc
+        #value = sum(value * sum(name in value_name for value_name in value_names) for name, value in value_map.items())
+        #return value
+        print("=== value_outputs_unwrap ===")
+        print("Input x:", x)
+        print("Input y:", y)
+        print("Raw value_outputs:", value_outputs)
+
+        # Step 1: Check for early exit
+        stripped_lines = y.strip().split('\n')
+        print("Stripped lines in y:", stripped_lines)
+        
+        if len(stripped_lines) == 4 and 'answer' not in y.lower():
+            print("Early exit: y contains only 4 lines and no 'answer'")
+        #    return 0
+
+        # Step 2: Get last line of each value output and lowercase it
+        value_names = [output.split('\n')[-1].lower() for output in value_outputs]
+        print("Extracted value judgments (last lines):", value_names)
+
+        # Step 3: Define value mapping
+        value_map = {'impossible': 0.001, 'likely': 1, 'sure': 20}
+        print("Value map:", value_map)
+
+        # Step 4: Compute the final value
+        total_value = 0
+        for name, score in value_map.items():
+            match_count = sum(name in value_name for value_name in value_names)
+            print(f"Keyword '{name}' found {match_count} times. Score contribution: {match_count * score}")
+            total_value += match_count * score
+
+        print("Total value score:", total_value)
+        return total_value

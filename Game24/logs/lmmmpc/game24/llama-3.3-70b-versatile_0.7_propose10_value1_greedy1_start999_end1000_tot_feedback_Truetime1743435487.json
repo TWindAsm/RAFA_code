@@ -1,0 +1,132 @@
+[
+    {
+        "idx": 999,
+        "agent_info": [
+            {
+                "steps": [
+                    {
+                        "step": 0,
+                        "x": "4 9 10 13",
+                        "ys": [
+                            ""
+                        ],
+                        "new_ys": [
+                            "13 - 9 = 4 (left: 4 4 10)\n",
+                            "13 - 10 = 3 (left: 3 4 9)\n",
+                            "10 - 4 = 6 (left: 6 9 13)\n",
+                            "10 - 9 = 1 (left: 1 4 13)\n",
+                            "9 + 4 = 13 (left: 10 13)\n",
+                            "13 + 4 = 17 (left: 9 10 17)\n",
+                            "10 + 4 = 14 (left: 9 13 14)\n",
+                            "9 + 10 = 19 (left: 4 13 19)\n",
+                            "4 * 9 = 36 (left: 10 13 36)\n",
+                            "10 * 4 = 40 (left: 9 13 40)\n"
+                        ],
+                        "values": [
+                            0.001,
+                            20.0,
+                            0.001,
+                            0.001,
+                            0.001,
+                            0.001,
+                            0.001,
+                            20.0,
+                            0.001,
+                            0.001
+                        ],
+                        "select_new_ys": [
+                            "13 - 10 = 3 (left: 3 4 9)\n"
+                        ]
+                    },
+                    {
+                        "step": 1,
+                        "x": "4 9 10 13",
+                        "ys": [
+                            "13 - 10 = 3 (left: 3 4 9)\n"
+                        ],
+                        "new_ys": [
+                            "13 - 10 = 3 (left: 3 4 9)\n3 + 4 = 7 (left: 7 9)\n",
+                            "13 - 10 = 3 (left: 3 4 9)\n4 * 3 = 12 (left: 9 12)\n",
+                            "13 - 10 = 3 (left: 3 4 9)\n9 / 3 = 3 (left: 3 4)\n",
+                            "13 - 10 = 3 (left: 3 4 9)\n9 - 3 = 6 (left: 4 6)\n",
+                            "13 - 10 = 3 (left: 3 4 9)\n9 - 4 = 5 (left: 3 5)\n",
+                            "13 - 10 = 3 (left: 3 4 9)\n3 * 4 = 12 (left: 9 12)\n",
+                            "13 - 10 = 3 (left: 3 4 9)\n4 + 3 = 7 (left: 7 9)\n",
+                            "13 - 10 = 3 (left: 3 4 9)\n4 + 9 = 13 (left: 3 13)\n"
+                        ],
+                        "values": [
+                            0.001,
+                            0.001,
+                            0.001,
+                            20.0,
+                            0.001,
+                            0.001,
+                            0.001,
+                            0.001
+                        ],
+                        "select_new_ys": [
+                            "13 - 10 = 3 (left: 3 4 9)\n9 - 3 = 6 (left: 4 6)\n"
+                        ]
+                    },
+                    {
+                        "step": 2,
+                        "x": "4 9 10 13",
+                        "ys": [
+                            "13 - 10 = 3 (left: 3 4 9)\n9 - 3 = 6 (left: 4 6)\n"
+                        ],
+                        "new_ys": [
+                            "13 - 10 = 3 (left: 3 4 9)\n9 - 3 = 6 (left: 4 6)\n4 + 6 = 10 (left: 10)\n",
+                            "13 - 10 = 3 (left: 3 4 9)\n9 - 3 = 6 (left: 4 6)\n4 - 6 = -2 (left: -2)\n",
+                            "13 - 10 = 3 (left: 3 4 9)\n9 - 3 = 6 (left: 4 6)\n6 - 4 = 2 (left: 2)\n",
+                            "13 - 10 = 3 (left: 3 4 9)\n9 - 3 = 6 (left: 4 6)\n4 * 6 = 24 (left: 24)\n",
+                            "13 - 10 = 3 (left: 3 4 9)\n9 - 3 = 6 (left: 4 6)\n6 / 4 = 1.5 (left: 1.5)\n",
+                            "13 - 10 = 3 (left: 3 4 9)\n9 - 3 = 6 (left: 4 6)\n4 / 6 = 0.6667 (left: 0.6667)\n"
+                        ],
+                        "values": [
+                            0.001,
+                            0.001,
+                            0.001,
+                            20.0,
+                            0.001,
+                            0.001
+                        ],
+                        "select_new_ys": [
+                            "13 - 10 = 3 (left: 3 4 9)\n9 - 3 = 6 (left: 4 6)\n4 * 6 = 24 (left: 24)\n"
+                        ]
+                    },
+                    {
+                        "step": 3,
+                        "x": "4 9 10 13",
+                        "ys": [
+                            "13 - 10 = 3 (left: 3 4 9)\n9 - 3 = 6 (left: 4 6)\n4 * 6 = 24 (left: 24)\n"
+                        ],
+                        "new_ys": [
+                            "13 - 10 = 3 (left: 3 4 9)\n9 - 3 = 6 (left: 4 6)\n4 * 6 = 24 (left: 24)\nI'm ready to play the game of 24. What are the 4 numbers I should use to try to get 24 using basic arithmetic operations (+ - * /)?\n"
+                        ],
+                        "values": [
+                            0
+                        ],
+                        "select_new_ys": [
+                            "13 - 10 = 3 (left: 3 4 9)\n9 - 3 = 6 (left: 4 6)\n4 * 6 = 24 (left: 24)\nI'm ready to play the game of 24. What are the 4 numbers I should use to try to get 24 using basic arithmetic operations (+ - * /)?\n"
+                        ]
+                    }
+                ]
+            }
+        ],
+        "env_info": [
+            {
+                "action": "13 - 10 = 3 (left: 3 4 9)\n9 - 3 = 6 (left: 4 6)\n4 * 6 = 24 (left: 24)\nI'm ready to play the game of 24. What are the 4 numbers I should use to try to get 24 using basic arithmetic operations (+ - * /)?\n",
+                "history": [
+                    "13 - 10 = 3 (left: 3 4 9)",
+                    "9 - 3 = 6 (left: 4 6)",
+                    "4 * 6 = 24 (left: 24)"
+                ]
+            }
+        ],
+        "usage_so_far": {
+            "completion_tokens": 7328,
+            "prompt_tokens": 6651,
+            "cost": 0.6392100000000001
+        }
+    }
+]

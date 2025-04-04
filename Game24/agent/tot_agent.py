@@ -14,6 +14,7 @@ def get_value(env, history, x, y, n_evaluate_sample, cache_value=True):
     #         return 0
     value_prompt = env.value_prompt_wrap(x, y)
     if cache_value and value_prompt in env.value_cache:
+        print("value was in cache")
         return env.value_cache[value_prompt]
     value_outputs = gpt_with_history(value_prompt, history, temperature=0.3, n=n_evaluate_sample, stop=None)
     value = env.value_outputs_unwrap(x, y, value_outputs)
@@ -28,7 +29,9 @@ def get_values(env, history, x, ys, n_evaluate_sample, cache_value=True):
     for y in ys:  # each partial output
         if y in local_value_cache and cache_value:  # avoid duplicate candidates
             value = local_value_cache[y]
+            print("Y was in cache")
         else:
+            print("Y was not in cache, calls get_value()")
             value = get_value(env, history, x, y, n_evaluate_sample, cache_value=cache_value)
             if cache_value:
                 local_value_cache[y] = value
@@ -45,14 +48,14 @@ def get_votes(env, history, x, ys, n_evaluate_sample):
 
 def get_proposals(env, history, x, y, n_propose_sample=10):
     propose_prompt = env.propose_prompt_wrap(x, y)
-    print("propose_prompt: ", propose_prompt)
-    print("x:", x)
+    #print("x:", x)
     proposal_list = [x.split('\n') for x in gpt_with_history(propose_prompt, history, n=1, stop=["\n\n"])]
-    for xx in gpt_with_history(propose_prompt, history, n=1, stop=None):
-        print("x in for: ", xx)
+    #for xx in gpt_with_history(propose_prompt, history, n=1, stop=["\n\n"]):
+    #    print("x in for: ", xx)
     proposals = []
     for p in proposal_list:
         proposals.extend(p)
+    #print("proposals before indexing: ", proposals)    
     proposals = proposals[:min(len(proposals), n_propose_sample)]
     print("proposals: ", proposals)
     return [y + _ + '\n' for _ in proposals]
@@ -65,9 +68,9 @@ def get_samples(env, history, x, y, n_generate_sample, prompt_sample, stop):
         prompt = env.cot_prompt_wrap(x, y)
     else:
         raise ValueError(f'prompt_sample {prompt_sample} not recognized')
-    print("Gets here before gpt call")
+    #print("Gets here before gpt call")
     samples = gpt(prompt, n=n_generate_sample, stop=stop)
-    print("Gets here after gpt call")
+    #print("Gets here after gpt call")
     return [y + _ for _ in samples]
 
 
@@ -123,11 +126,14 @@ class TreeOfThoughtAgent(Agent):
                 print("makes proposal")
                 new_ys = [get_proposals(env, obs, x, y, self.n_generate_sample) for y in ys]
             new_ys = list(itertools.chain(*new_ys))
+            print("new_ys: ", new_ys)
             ids = list(range(len(new_ys)))
+            print("ids: ", ids)
             # evaluation
             if self.method_evaluate == 'vote':
                 values = get_votes(env, value_obs, x, new_ys, self.n_evaluate_sample)
             elif self.method_evaluate == 'value':
+                #print("gets in value")
                 values = get_values(env, value_obs, x, new_ys, self.n_evaluate_sample, cache_value=False)
 
             # selection
@@ -140,7 +146,7 @@ class TreeOfThoughtAgent(Agent):
             elif self.method_select == 'greedy':
                 select_ids = sorted(ids, key=lambda x: values[x], reverse=True)[:self.n_select_sample]
             select_new_ys = [new_ys[select_id] for select_id in select_ids]
-            print("selected new ys: ", new_ys)
+            print("selected new ys: ", select_new_ys) #current log has new_ys not select_new_ys
 
             # log
             if to_print:
@@ -154,7 +160,7 @@ class TreeOfThoughtAgent(Agent):
 
         if to_print:
             print("to_print is true")
-            print(ys)
+            print("ys: ", )
         # if len(ys):
         #     return ys[0], {'steps': infos}
         ys_list = [y.split('\n')[len(history):] for y in ys]
@@ -170,10 +176,12 @@ class TreeOfThoughtAgent(Agent):
         reflects = gpt(reflect_prompt, stop=None)
         value_reflects = gpt(value_reflect_prompt, stop=None)
         self.reflects.extend(reflects)
+        print("self.reflects: ", self.reflects)
         self.value_reflects.extend(value_reflects)
         return
 
     def act(self, env, obs):
+        print(obs['feedback'])
         if len(obs['feedback']) >= 1:
             self.reflect(env, obs)
         action, info = self.plan(env)

@@ -5,7 +5,7 @@ import sympy
 
 def check_answer(problem: str, answer: str):
     expression = answer.strip().split('\n')[-1].lower().replace('answer: ', '').split('=')[0]
-    print("expression: ", expression)
+    print("expression is: ", expression)
     numbers = re.findall(r'\d+', expression)
     print("numbers: ", numbers)
     problem_numbers = re.findall(r'\d+', problem)
@@ -63,6 +63,10 @@ def check_equation(equation):
 
 
 def check_twentyfour(cur_step):
+    for num in cur_step.split('left:')[-1].strip("()").split(" "):
+        print("num in check 24: ", num, "type: ", type(num))
+        if num != '':
+            print("num to float: ", float(num))
     cards = [float(num) for num in cur_step.split('left:')[-1].strip("()").split(" ") if num != '']
 
     try:

@@ -6,9 +6,12 @@ import os
 from agent import gpt_usage
 import json
 import time
-
+import sys
+import io
 
 def run(args):
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
     agent_cls = {"tot": TreeOfThoughtAgent,
                  "naive": NaiveAgent,
                  "cot": NaiveAgent}.get(args.planning, NaiveAgent)
