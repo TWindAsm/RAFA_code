@@ -14,7 +14,7 @@ Input: {input}
 '''
 
 # 5-shot
-cot_prompt = '''Now just remember the tips from before (if any) and focus on the new task. Use numbers and basic arithmetic operations (+ - * /) to obtain 24. Each step, you are only allowed to choose two of the remaining numbers to obtain a new number. Only single newline and never double newline. Write
+cot_prompt = '''Now just remember the tips from before (if any) and focus on the new task. Use numbers and basic arithmetic operations (+ - * /) to obtain 24. Each step, you are only allowed to choose two of the remaining numbers to obtain a new number. Only single newline and never double newline. Write "Answer: " before the equation 
 Input: 4 4 6 8
 Steps:
 4 + 8 = 12 (left: 4 6 12)

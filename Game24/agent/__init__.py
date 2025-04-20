@@ -4,7 +4,7 @@ from tenacity import retry, retry_if_exception_type, wait_random_exponential, st
 from groq import Groq
 
 completion_tokens = prompt_tokens = 0
-client = Groq(api_key="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")
+client = Groq(api_key="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")
 
 @retry(retry=retry_if_exception_type(Exception), 
        wait=wait_random_exponential(min=1, max=60), 

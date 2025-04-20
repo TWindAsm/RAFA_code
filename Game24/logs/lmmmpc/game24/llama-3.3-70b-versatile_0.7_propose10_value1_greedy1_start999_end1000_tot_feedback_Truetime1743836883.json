@@ -1,0 +1,240 @@
+[
+    {
+        "idx": 999,
+        "agent_info": [
+            {
+                "steps": [
+                    {
+                        "step": 0,
+                        "x": "4 9 10 13",
+                        "ys": [
+                            ""
+                        ],
+                        "new_ys": [
+                            "13 - 9 = 4 (left: 4 4 10)\n",
+                            "13 - 10 = 3 (left: 3 4 9)\n",
+                            "10 - 4 = 6 (left: 6 9 13)\n",
+                            "10 - 9 = 1 (left: 1 4 13)\n",
+                            "9 - 4 = 5 (left: 5 10 13)\n",
+                            "13 / 4 = 3.25 (left: 3.25 9 10), this step will not lead to an integer result, so we avoid it\n",
+                            "9 / 4 = 2.25 (left: 2.25 10 13), this step will not lead to an integer result, so we avoid it\n",
+                            "10 / 4 = 2.5 (left: 2.5 9 13), this step will not lead to an integer result, so we avoid it\n",
+                            "10 / 9 = 1.11 (left: 1.11 4 13), this step will not lead to an integer result, so we avoid it\n",
+                            "13 / 9 = 1.44 (left: 1.44 4 10), this step will not lead to an integer result, so we avoid it\n"
+                        ],
+                        "values": [
+                            20.0,
+                            20.0,
+                            20.0,
+                            0.001,
+                            0.001,
+                            1.0,
+                            0.001,
+                            1.0,
+                            0.001,
+                            0.001
+                        ],
+                        "select_new_ys": [
+                            "13 - 9 = 4 (left: 4 4 10)\n"
+                        ]
+                    },
+                    {
+                        "step": 1,
+                        "x": "4 9 10 13",
+                        "ys": [
+                            "13 - 9 = 4 (left: 4 4 10)\n"
+                        ],
+                        "new_ys": [
+                            "13 - 9 = 4 (left: 4 4 10)\n4 + 4 = 8 (left: 8 10)\n",
+                            "13 - 9 = 4 (left: 4 4 10)\n4 * 4 = 16 (left: 10 16)\n",
+                            "13 - 9 = 4 (left: 4 4 10)\n10 - 4 = 6 (left: 4 6)\n",
+                            "13 - 9 = 4 (left: 4 4 10)\n10 / 4 = 2.5 (left: 2.5 4)\n",
+                            "13 - 9 = 4 (left: 4 4 10)\n4 - 4 = 0 (left: 0 10)\n",
+                            "13 - 9 = 4 (left: 4 4 10)\n10 + 4 = 14 (left: 4 14)\n",
+                            "13 - 9 = 4 (left: 4 4 10)\n10 / 4 = 2.5 (left: 2.5 4)\n"
+                        ],
+                        "values": [
+                            0.001,
+                            0.001,
+                            20.0,
+                            0.001,
+                            0.001,
+                            0.001,
+                            0.001
+                        ],
+                        "select_new_ys": [
+                            "13 - 9 = 4 (left: 4 4 10)\n10 - 4 = 6 (left: 4 6)\n"
+                        ]
+                    },
+                    {
+                        "step": 2,
+                        "x": "4 9 10 13",
+                        "ys": [
+                            "13 - 9 = 4 (left: 4 4 10)\n10 - 4 = 6 (left: 4 6)\n"
+                        ],
+                        "new_ys": [
+                            "13 - 9 = 4 (left: 4 4 10)\n10 - 4 = 6 (left: 4 6)\n6 + 4 = 10 (left: 10)\n",
+                            "13 - 9 = 4 (left: 4 4 10)\n10 - 4 = 6 (left: 4 6)\n6 - 4 = 2 (left: 2)\n",
+                            "13 - 9 = 4 (left: 4 4 10)\n10 - 4 = 6 (left: 4 6)\n6 * 4 = 24 (left: 24)\n",
+                            "13 - 9 = 4 (left: 4 4 10)\n10 - 4 = 6 (left: 4 6)\n4 / 6 = 2/3 (left: 2/3, note: this might not be a good step as we are trying to get to 24)\n",
+                            "13 - 9 = 4 (left: 4 4 10)\n10 - 4 = 6 (left: 4 6)\n6 / 4 = 1.5 (left: 1.5, note: this might not be a good step as we are trying to get to 24)\n"
+                        ],
+                        "values": [
+                            1.0,
+                            0.001,
+                            20.0,
+                            0.001,
+                            0.001
+                        ],
+                        "select_new_ys": [
+                            "13 - 9 = 4 (left: 4 4 10)\n10 - 4 = 6 (left: 4 6)\n6 * 4 = 24 (left: 24)\n"
+                        ]
+                    },
+                    {
+                        "step": 3,
+                        "x": "4 9 10 13",
+                        "ys": [
+                            "13 - 9 = 4 (left: 4 4 10)\n10 - 4 = 6 (left: 4 6)\n6 * 4 = 24 (left: 24)\n"
+                        ],
+                        "new_ys": [
+                            "13 - 9 = 4 (left: 4 4 10)\n10 - 4 = 6 (left: 4 6)\n6 * 4 = 24 (left: 24)\nanswer: (13 - 9) * (10 - (13 - 9)) = 24\n"
+                        ],
+                        "values": [
+                            20.0
+                        ],
+                        "select_new_ys": [
+                            "13 - 9 = 4 (left: 4 4 10)\n10 - 4 = 6 (left: 4 6)\n6 * 4 = 24 (left: 24)\nanswer: (13 - 9) * (10 - (13 - 9)) = 24\n"
+                        ]
+                    }
+                ]
+            },
+            {
+                "steps": [
+                    {
+                        "step": 0,
+                        "x": "4 9 10 13",
+                        "ys": [
+                            "13 - 9 = 4 (left: 4 4 10)\n10 - 4 = 6 (left: 4 6)\n6 * 4 = 24 (left: 24)\n"
+                        ],
+                        "new_ys": [
+                            "13 - 9 = 4 (left: 4 4 10)\n10 - 4 = 6 (left: 4 6)\n6 * 4 = 24 (left: 24)\nanswer: (13 - 9) * (10 - (13 - 9)) = (13 - 9) * (10 - 4) = 4 * 6 = 24\n"
+                        ],
+                        "values": [
+                            20.0
+                        ],
+                        "select_new_ys": [
+                            "13 - 9 = 4 (left: 4 4 10)\n10 - 4 = 6 (left: 4 6)\n6 * 4 = 24 (left: 24)\nanswer: (13 - 9) * (10 - (13 - 9)) = (13 - 9) * (10 - 4) = 4 * 6 = 24\n"
+                        ]
+                    }
+                ]
+            },
+            {
+                "steps": [
+                    {
+                        "step": 0,
+                        "x": "4 9 10 13",
+                        "ys": [
+                            "13 - 9 = 4 (left: 4 4 10)\n10 - 4 = 6 (left: 4 6)\n6 * 4 = 24 (left: 24)\n"
+                        ],
+                        "new_ys": [
+                            "13 - 9 = 4 (left: 4 4 10)\n10 - 4 = 6 (left: 4 6)\n6 * 4 = 24 (left: 24)\nanswer: (13 - 9) * (10 - (13 - 9)) = 24\n"
+                        ],
+                        "values": [
+                            0.001
+                        ],
+                        "select_new_ys": [
+                            "13 - 9 = 4 (left: 4 4 10)\n10 - 4 = 6 (left: 4 6)\n6 * 4 = 24 (left: 24)\nanswer: (13 - 9) * (10 - (13 - 9)) = 24\n"
+                        ]
+                    }
+                ]
+            },
+            {
+                "steps": [
+                    {
+                        "step": 0,
+                        "x": "4 9 10 13",
+                        "ys": [
+                            "13 - 9 = 4 (left: 4 4 10)\n10 - 4 = 6 (left: 4 6)\n6 * 4 = 24 (left: 24)\n"
+                        ],
+                        "new_ys": [
+                            "13 - 9 = 4 (left: 4 4 10)\n10 - 4 = 6 (left: 4 6)\n6 * 4 = 24 (left: 24)\nanswer: (13 - 9) * (10 - (13 - 9)) = 24\n"
+                        ],
+                        "values": [
+                            0.0
+                        ],
+                        "select_new_ys": [
+                            "13 - 9 = 4 (left: 4 4 10)\n10 - 4 = 6 (left: 4 6)\n6 * 4 = 24 (left: 24)\nanswer: (13 - 9) * (10 - (13 - 9)) = 24\n"
+                        ]
+                    }
+                ]
+            },
+            {
+                "steps": [
+                    {
+                        "step": 0,
+                        "x": "4 9 10 13",
+                        "ys": [
+                            "13 - 9 = 4 (left: 4 4 10)\n10 - 4 = 6 (left: 4 6)\n6 * 4 = 24 (left: 24)\n"
+                        ],
+                        "new_ys": [
+                            "13 - 9 = 4 (left: 4 4 10)\n10 - 4 = 6 (left: 4 6)\n6 * 4 = 24 (left: 24)\nanswer: (13 - 9) * (10 - (13 - 9)) = 24\n"
+                        ],
+                        "values": [
+                            20.0
+                        ],
+                        "select_new_ys": [
+                            "13 - 9 = 4 (left: 4 4 10)\n10 - 4 = 6 (left: 4 6)\n6 * 4 = 24 (left: 24)\nanswer: (13 - 9) * (10 - (13 - 9)) = 24\n"
+                        ]
+                    }
+                ]
+            }
+        ],
+        "env_info": [
+            {
+                "action": "13 - 9 = 4 (left: 4 4 10)\n10 - 4 = 6 (left: 4 6)\n6 * 4 = 24 (left: 24)\nanswer: (13 - 9) * (10 - (13 - 9)) = 24\n",
+                "history": [
+                    "13 - 9 = 4 (left: 4 4 10)",
+                    "10 - 4 = 6 (left: 4 6)",
+                    "6 * 4 = 24 (left: 24)"
+                ]
+            },
+            {
+                "action": "answer: (13 - 9) * (10 - (13 - 9)) = (13 - 9) * (10 - 4) = 4 * 6 = 24\n",
+                "history": [
+                    "13 - 9 = 4 (left: 4 4 10)",
+                    "10 - 4 = 6 (left: 4 6)",
+                    "6 * 4 = 24 (left: 24)"
+                ]
+            },
+            {
+                "action": "answer: (13 - 9) * (10 - (13 - 9)) = 24\n",
+                "history": [
+                    "13 - 9 = 4 (left: 4 4 10)",
+                    "10 - 4 = 6 (left: 4 6)",
+                    "6 * 4 = 24 (left: 24)"
+                ]
+            },
+            {
+                "action": "answer: (13 - 9) * (10 - (13 - 9)) = 24\n",
+                "history": [
+                    "13 - 9 = 4 (left: 4 4 10)",
+                    "10 - 4 = 6 (left: 4 6)",
+                    "6 * 4 = 24 (left: 24)"
+                ]
+            },
+            {
+                "action": "answer: (13 - 9) * (10 - (13 - 9)) = 24\n",
+                "history": [
+                    "13 - 9 = 4 (left: 4 4 10)",
+                    "10 - 4 = 6 (left: 4 6)",
+                    "6 * 4 = 24 (left: 24)"
+                ]
+            }
+        ],
+        "usage_so_far": {
+            "completion_tokens": 10613,
+            "prompt_tokens": 17735,
+            "cost": 1.1688299999999998
+        }
+    }
+]
